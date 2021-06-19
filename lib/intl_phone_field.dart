@@ -328,7 +328,7 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                 );
             },
             validator: validator,
-            maxLength: _selectedCountry['max_length'],
+            // maxLength: _selectedCountry['max_length'],
             keyboardType: widget.keyboardType,
             inputFormatters: widget.inputFormatters,
             enabled: widget.enabled,
