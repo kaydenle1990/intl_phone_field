@@ -351,25 +351,26 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              if (widget.showDropdownIcon) ...[
-                Icon(
-                  Icons.arrow_drop_down,
-                  color: widget.dropDownArrowColor,
-                ),
-                SizedBox(width: 4)
-              ],
               Image.asset(
                 'assets/flags/${_selectedCountry['code']!.toLowerCase()}.png',
                 package: 'intl_phone_field',
                 width: 32,
               ),
+              if (widget.showDropdownIcon) ...[
+                Icon(
+                  Icons.keyboard_arrow_down,
+                  color: widget.dropDownArrowColor,
+                ),
+                SizedBox(width: 4)
+              ],
               SizedBox(width: 8),
               FittedBox(
                 child: Text(
                   '+${_selectedCountry['dial_code']}',
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      color: widget.countryCodeTextColor),
+                      color: widget.countryCodeTextColor,
+                      fontSize: 18.0),
                 ),
               ),
               SizedBox(width: 8),
