@@ -240,36 +240,51 @@ class _IntlPhoneFieldState extends State<IntlPhoneField> {
                     itemCount: filteredCountries.length,
                     itemBuilder: (ctx, index) => Column(
                       children: <Widget>[
-                        ListTile(
-                          leading: Image.asset(
-                            'assets/flags/${filteredCountries[index]['code']!.toLowerCase()}.png',
-                            package: 'intl_phone_field',
-                            width: 32,
-                          ),
-                          title: Text(
-                            filteredCountries[index]['name']!,
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          trailing: Text(
-                            '+${filteredCountries[index]['dial_code']}',
-                            style: TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          onTap: () {
-                            _selectedCountry = filteredCountries[index];
-
-                            if (widget.onCountryChanged != null) {
-                              widget.onCountryChanged!(
-                                PhoneNumber(
-                                  countryISOCode: _selectedCountry['code'],
-                                  countryCode:
-                                      '+${_selectedCountry['dial_code']}',
-                                  number: '',
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: 6.0, horizontal: 16.0),
+                          child: GestureDetector(
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/flags/${filteredCountries[index]['code']!.toLowerCase()}.png',
+                                  package: 'intl_phone_field',
+                                  width: 32,
                                 ),
-                              );
-                            }
+                                SizedBox(width: 24.0),
+                                Expanded(
+                                  child: Text(
+                                    filteredCountries[index]['name']!,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16.0),
+                                  ),
+                                ),
+                                Text(
+                                  '+${filteredCountries[index]['dial_code']}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 16.0),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              _selectedCountry = filteredCountries[index];
 
-                            Navigator.of(context).pop();
-                          },
+                              if (widget.onCountryChanged != null) {
+                                widget.onCountryChanged!(
+                                  PhoneNumber(
+                                    countryISOCode: _selectedCountry['code'],
+                                    countryCode:
+                                        '+${_selectedCountry['dial_code']}',
+                                    number: '',
+                                  ),
+                                );
+                              }
+
+                              Navigator.of(context).pop();
+                            },
+                          ),
                         ),
                         Divider(thickness: 1),
                       ],
